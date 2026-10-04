@@ -168,4 +168,4 @@ assumptions, and a clear, interpretable divergence where they don't.
 
 ## License
 
-MIT — see `LICENSE` (add your name/institution).
+MIT — see `LICENSE` (add your Sandra Márquez Durán).
