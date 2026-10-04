@@ -1,0 +1,9 @@
+# R session / output artifacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rout
+
+# generated outputs (regenerate by running the scripts)
+results/
+figures/
