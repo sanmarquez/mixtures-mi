@@ -101,6 +101,8 @@ checked against a known truth.
 
 ## Example output (reproducible demo, `m = 5`, seed 2026)
 
+![BKMR overall mixture effect](overall_effect.png)
+
 **Overall mixture effect** — all three agree on a clear positive joint effect:
 
 | method | estimate | 95% CI | excludes 0 |
