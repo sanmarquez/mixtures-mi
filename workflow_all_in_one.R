@@ -16,7 +16,7 @@
 # =============================================================================
 
 suppressPackageStartupMessages({
-  library(MASS); library(mice); library(dplyr); library(qgcomp); library(bkmr)
+  library(MASS); library(mice); library(dplyr); library(qgcomp); library(bkmr); library(ggplot2)
 })
 set.seed(2026)
 
@@ -179,3 +179,16 @@ dir.create("results", showWarnings = FALSE)
 write.csv(overall_tab, "results/comparison_overall.csv",    row.names = FALSE)
 write.csv(imp_tab,     "results/comparison_importance.csv", row.names = FALSE)
 cat("\nDone. Tables written to results/.\n")
+
+#### PLOT BKMR overall mixture effect
+d <- bk_approx
+d$lower[is.nan(d$lower)] <- 0; d$upper[is.nan(d$upper)] <- 0   # la fila 0.50 es la referencia
+p <- ggplot(d, aes(quantile, estimate)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = .15, fill = "#4C78A8") +
+  geom_line(linewidth = .8, colour = "#2C3E50") + geom_point(size = 1.6) +
+  theme_classic(base_size = 13) +
+  labs(title = "BKMR: overall mixture effect",
+       x = "Mixture quantile (vs. median)", y = "Estimated change in outcome")
+ggsave("overall_effect.png", p, width = 7, height = 4.5, dpi = 150)
+cat("Guardado en:", file.path(getwd(), "overall_effect.png"), "\n")
